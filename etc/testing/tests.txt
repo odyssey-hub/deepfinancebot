@@ -1,0 +1,69 @@
+1. StatValues
+/mean TATN -p 14d
+/var KMAZ -p 2w -t h
+/median TRMK -p 06.05.2021 15.10.2021 -c open
+/std TCSG -c volume -p 4m
+/mean CHMF -p 2y -c all
+
+
+2. Corr (1 ticker)
+/corr SBER -p 30d
+/corr FLOT -p 01.01.2021 01.01.2022
+/corr GAZP -p 15d -t h
+/corr BANEP -p 2m -c open high
+/corr VKCO -p 1w -t d -c open high
+
+3. Corr (2 ticker)
+/corr MAGN ROSN -p 60d
+/corr FESH CBOM -t w -p 01.01.2020 01.01.2021
+/corr FEES PHOR -p 2w -c open
+/corr SMLT MOEX TRMK -p 1m
+/corr SBER ROSN LKOH -p 6m -t w -c high
+
+4. Index Compound
+/index IMOEX
+/index .MOEXFN
+
+5. Indexes
+/indexes FLOT
+
+6. Index as ticker
+/mean .MOEXFN -p 2w -c close -t h
+/median .IMOEX -p 11.11.2022 10.05.2023 -t w -c close
+/corr .MOEXOG -p 1m -t d -c open high
+/corr .MOEXOG VKCO -p 20d -t d -c close
+
+7. Delta2w (Mini)
+/delta2w MAGN SBER
+/delta2w SBER ROSN LKOH MAGN SMLT TRMK FLOT -per 20 -corr 0.80 -diff 10
+/delta2w SBER ROSN LKOH MAGN SMLT TRMK FLOT -per 250 -corr 0.80 -diff 10
+
+8. Detla2w (Full)
+/delta2w_full -per 40 -corr 0.80 -diff 12
+/delta2w_full -per 30 -corr 0.80 -diff 11 -AND -per 40 -corr 0.9 -diff 12
+/delta2w_full -per 30 -corr 0.80 -diff 11 -OR -per 40 -corr 0.9 -diff 12
+/delta2w_full -per 30 -corr 0.80 -diff 11 -AND -per 40 -corr 0.9 -diff 12 -AND -per 20 -corr 0.9 -diff 12
+/delta2w_stop
+
+9. Tickers
+/ticker GAZP
+/ticker .IMOEX
+/tickers -list
+/tickers -cnt
+
+
+10.export
+/export LKOH -p 150d
+/export SBER -p 05.02.2020 01.10.2023 -t w
+
+11.chart
+/chart SBER -p 60d -t h
+
+12.forecast
+/forecast SBER
+/forecast SBER -t h -m nhits
+/forecast SBER -t d -prob
+/forecast .IMOEX -t w
+/forecast .IMOEX -m rnn -prob -hor 10
+
+

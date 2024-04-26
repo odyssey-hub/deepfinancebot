@@ -1,0 +1,579 @@
+11/28/2023 06:59:45 PM Ошибка. Не получилось считать данные по VZRZP из БД
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 28, in __init__
+    data = db.read_ts(ticker, timeframe, start, end)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\db\SQLite\DB.py", line 22, in read_ts
+    self.check_and_update(ticker, timeframe)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\db\SQLite\DB.py", line 42, in check_and_update
+    db_date = dt.date.fromisoformat(self.get_db_date(ticker, self.detransform_timeframe(timeframe))[:10])
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\db\SQLite\DB.py", line 92, in get_db_date
+    return db_date[0]
+           ~~~~~~~^^^
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\basic_commands\export\tickers_cmd.py", line 41, in execute_command
+    bot_message = tickers(params_dict)
+                  ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\basic_commands\export\tickers_query.py", line 15, in tickers
+    return get_ticker_info(cmd_ticker)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\basic_commands\export\tickers_query.py", line 28, in get_ticker_info
+    ticker_ts = FinTimeSeries.from_last(ticker, 'y', 1, 24)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 102, in from_last
+    return cls.from_years(ticker, period_num, timeframe, curr_date, include_today, from_db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 90, in from_years
+    return cls(ticker, timeframe, str(start), str(end), from_db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 30, in __init__
+    raise DBException("ticker", ticker)
+chatbot.exceptions.DBException.DBException: Ошибка. Не получилось считать данные по VZRZP из БД
+11/28/2023 07:19:44 PM Infinity polling exception: 'required' is an invalid argument for positionals
+11/28/2023 07:19:44 PM Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 955, in infinity_polling
+    self.polling(non_stop=True, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1043, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1118, in __threaded_polling
+    raise e
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1074, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 147, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 90, in run
+    task(*args, **kwargs)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 6770, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\basic_commands\export\tickers_cmd.py", line 15, in tickers_handler
+    params_dict = ParamParser.get_params_dict(user_message, parse_cmd)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\helpers\ParamHelpers\ParamParser.py", line 34, in get_params_dict
+    params_dict = parse_cmd(user_params_str)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\basic_commands\export\tickers_cmd.py", line 31, in parse_cmd
+    parser.add_argument('ticker', default=None, required=False)
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python311\Lib\argparse.py", line 1432, in add_argument
+    kwargs = self._get_positional_kwargs(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\AppData\Local\Programs\Python\Python311\Lib\argparse.py", line 1548, in _get_positional_kwargs
+    raise TypeError(msg)
+TypeError: 'required' is an invalid argument for positionals
+
+11/28/2023 07:29:55 PM 'ticker'
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\basic_commands\export\tickers_cmd.py", line 41, in execute_command
+    bot_message = tickers(params_dict)
+                  ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\basic_commands\export\tickers_query.py", line 10, in tickers
+    ticker = params_dict['ticker']
+             ~~~~~~~~~~~^^^^^^^^^^
+KeyError: 'ticker'
+11/28/2023 07:32:08 PM Ошибка. Не получилось считать данные по VZRZP из БД
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 28, in __init__
+    data = db.read_ts(ticker, timeframe, start, end)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\db\SQLite\DB.py", line 22, in read_ts
+    self.check_and_update(ticker, timeframe)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\db\SQLite\DB.py", line 42, in check_and_update
+    db_date = dt.date.fromisoformat(self.get_db_date(ticker, self.detransform_timeframe(timeframe))[:10])
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\db\SQLite\DB.py", line 92, in get_db_date
+    return db_date[0]
+           ~~~~~~~^^^
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\basic_commands\export\tickers_cmd.py", line 41, in execute_command
+    bot_message = tickers(params_dict)
+                  ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\basic_commands\export\tickers_query.py", line 17, in tickers
+    return get_ticker_info(cmd_ticker)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\basic_commands\export\tickers_query.py", line 32, in get_ticker_info
+    ticker_ts = FinTimeSeries.from_last(ticker, 'y', 1, 24)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 102, in from_last
+    return cls.from_years(ticker, period_num, timeframe, curr_date, include_today, from_db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 90, in from_years
+    return cls(ticker, timeframe, str(start), str(end), from_db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 30, in __init__
+    raise DBException("ticker", ticker)
+chatbot.exceptions.DBException.DBException: Ошибка. Не получилось считать данные по VZRZP из БД
+11/28/2023 07:33:03 PM Ошибка. Не получилось считать данные по VZRZP из БД
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 28, in __init__
+    data = db.read_ts(ticker, timeframe, start, end)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\db\SQLite\DB.py", line 22, in read_ts
+    self.check_and_update(ticker, timeframe)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\db\SQLite\DB.py", line 42, in check_and_update
+    db_date = dt.date.fromisoformat(self.get_db_date(ticker, self.detransform_timeframe(timeframe))[:10])
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\db\SQLite\DB.py", line 92, in get_db_date
+    return db_date[0]
+           ~~~~~~~^^^
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\basic_commands\export\tickers_cmd.py", line 41, in execute_command
+    bot_message = tickers(params_dict)
+                  ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\basic_commands\export\tickers_query.py", line 17, in tickers
+    return get_ticker_info(cmd_ticker)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\basic_commands\export\tickers_query.py", line 32, in get_ticker_info
+    ticker_ts = FinTimeSeries.from_last(ticker, 'y', 1, 24)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 102, in from_last
+    return cls.from_years(ticker, period_num, timeframe, curr_date, include_today, from_db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 90, in from_years
+    return cls(ticker, timeframe, str(start), str(end), from_db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 30, in __init__
+    raise DBException("ticker", ticker)
+chatbot.exceptions.DBException.DBException: Ошибка. Не получилось считать данные по VZRZP из БД
+11/29/2023 01:03:30 PM Infinity polling exception: Length of values (10) does not match length of index (1)
+11/29/2023 01:03:30 PM Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 955, in infinity_polling
+    self.polling(non_stop=True, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1043, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1118, in __threaded_polling
+    raise e
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1074, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 147, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 90, in run
+    task(*args, **kwargs)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 6770, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 46, in forecast_cmd_handler
+    output_bot_message(user_message.chat.id, metrics_dict, results_df, params_dict)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 71, in output_bot_message
+    results_df['dates'] = create_dates_column(params_dict['timeframe'], horizon)
+    ~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\frame.py", line 3950, in __setitem__
+    self._set_item(key, value)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\frame.py", line 4143, in _set_item
+    value = self._sanitize_column(value)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\frame.py", line 4870, in _sanitize_column
+    com.require_length_match(value, self.index)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\common.py", line 576, in require_length_match
+    raise ValueError(
+ValueError: Length of values (10) does not match length of index (1)
+
+11/29/2023 01:09:32 PM Infinity polling exception: Length of values (10) does not match length of index (1)
+11/29/2023 01:09:32 PM Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 955, in infinity_polling
+    self.polling(non_stop=True, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1043, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1118, in __threaded_polling
+    raise e
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1074, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 147, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 90, in run
+    task(*args, **kwargs)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 6770, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 46, in forecast_cmd_handler
+    output_bot_message(user_message.chat.id, metrics_dict, results_df, params_dict)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 71, in output_bot_message
+    results_df['dates'] = create_dates_column(params_dict['timeframe'], horizon)
+    ~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\frame.py", line 3950, in __setitem__
+    self._set_item(key, value)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\frame.py", line 4143, in _set_item
+    value = self._sanitize_column(value)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\frame.py", line 4870, in _sanitize_column
+    com.require_length_match(value, self.index)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\common.py", line 576, in require_length_match
+    raise ValueError(
+ValueError: Length of values (10) does not match length of index (1)
+
+11/29/2023 01:51:43 PM Infinity polling exception: Length of values (10) does not match length of index (1)
+11/29/2023 01:51:43 PM Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 955, in infinity_polling
+    self.polling(non_stop=True, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1043, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1118, in __threaded_polling
+    raise e
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1074, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 147, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 90, in run
+    task(*args, **kwargs)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 6770, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 46, in forecast_cmd_handler
+    output_bot_message(user_message.chat.id, metrics_dict, results_df, params_dict)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 71, in output_bot_message
+    results_df['dates'] = create_dates_column(params_dict['timeframe'], horizon)
+    ~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\frame.py", line 3950, in __setitem__
+    self._set_item(key, value)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\frame.py", line 4143, in _set_item
+    value = self._sanitize_column(value)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\frame.py", line 4870, in _sanitize_column
+    com.require_length_match(value, self.index)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\common.py", line 576, in require_length_match
+    raise ValueError(
+ValueError: Length of values (10) does not match length of index (1)
+
+11/29/2023 06:45:09 PM '<' not supported between instances of 'str' and 'int'
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 34, in forecast_cmd_handler
+    metrics_dict, results_df = forecast(params_dict)
+                               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_query.py", line 26, in forecast
+    validate_params(ticker, period, timeframe, column, horizon, eval_horizon, model)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_query.py", line 130, in validate_params
+    elif horizon < 0 or horizon >= 100:
+         ^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'str' and 'int'
+11/29/2023 06:45:32 PM '<' not supported between instances of 'str' and 'int'
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 34, in forecast_cmd_handler
+    metrics_dict, results_df = forecast(params_dict)
+                               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_query.py", line 26, in forecast
+    validate_params(ticker, period, timeframe, column, horizon, eval_horizon, model)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_query.py", line 130, in validate_params
+    elif horizon < 0 or horizon >= 100:
+         ^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'str' and 'int'
+11/29/2023 08:36:28 PM Infinity polling exception: Length of values (19) does not match length of index (30)
+11/29/2023 08:36:28 PM Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 955, in infinity_polling
+    self.polling(non_stop=True, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1043, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1118, in __threaded_polling
+    raise e
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1074, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 147, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 90, in run
+    task(*args, **kwargs)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 6770, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 47, in forecast_cmd_handler
+    output_bot_message(user_message.chat.id, metrics_dict, results_df, params_dict)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 72, in output_bot_message
+    results_df['дата'] = create_dates_column(params_dict['timeframe'], horizon)
+    ~~~~~~~~~~^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\frame.py", line 3950, in __setitem__
+    self._set_item(key, value)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\frame.py", line 4143, in _set_item
+    value = self._sanitize_column(value)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\frame.py", line 4870, in _sanitize_column
+    com.require_length_match(value, self.index)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\common.py", line 576, in require_length_match
+    raise ValueError(
+ValueError: Length of values (19) does not match length of index (30)
+
+11/29/2023 08:40:29 PM Infinity polling exception: DatetimeArray._generate_range() got an unexpected keyword argument 'closed'
+11/29/2023 08:40:29 PM Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 955, in infinity_polling
+    self.polling(non_stop=True, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1043, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1118, in __threaded_polling
+    raise e
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1074, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 147, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 90, in run
+    task(*args, **kwargs)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 6770, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 47, in forecast_cmd_handler
+    output_bot_message(user_message.chat.id, metrics_dict, results_df, params_dict)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 72, in output_bot_message
+    results_df['дата'] = create_dates_column(params_dict['timeframe'], horizon)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 107, in create_dates_column
+    date_range = pd.date_range(current_time, periods=horizon, freq='H', closed='right')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\indexes\datetimes.py", line 945, in date_range
+    dtarr = DatetimeArray._generate_range(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: DatetimeArray._generate_range() got an unexpected keyword argument 'closed'
+
+12/03/2023 04:57:15 PM Infinity polling exception: [Errno 2] No such file or directory: 'C:\\Users\\admin\\PycharmProjects\\chatbot_v3_transfer\\help\\cmds\\ticker_info.txt'
+12/03/2023 04:57:15 PM Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 955, in infinity_polling
+    self.polling(non_stop=True, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1043, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1118, in __threaded_polling
+    raise e
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1074, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 147, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 90, in run
+    task(*args, **kwargs)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 6770, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\basic_commands\tickers\ticker_info_cmd.py", line 21, in tickers_handler
+    bot.send_message(user_message.chat.id, ParamHelper.load_help_file('ticker_info'))
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\helpers\ParamHelpers\ParamHelper.py", line 27, in load_help_file
+    with open(path, 'r', encoding='UTF-8') as file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\admin\\PycharmProjects\\chatbot_v3_transfer\\help\\cmds\\ticker_info.txt'
+
+12/03/2023 06:33:42 PM Infinity polling exception: [Errno 2] No such file or directory: 'C:\\Users\\admin\\PycharmProjects\\chatbot_v3_transfer\\help\\cmds\\ticker_info.txt'
+12/03/2023 06:33:42 PM Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 955, in infinity_polling
+    self.polling(non_stop=True, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1043, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1118, in __threaded_polling
+    raise e
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1074, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 147, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 90, in run
+    task(*args, **kwargs)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 6770, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\basic_commands\tickers\ticker_info_cmd.py", line 21, in tickers_handler
+    bot.send_message(user_message.chat.id, ParamHelper.load_help_file('ticker_info'))
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\helpers\ParamHelpers\ParamHelper.py", line 27, in load_help_file
+    with open(path, 'r', encoding='UTF-8') as file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\admin\\PycharmProjects\\chatbot_v3_transfer\\help\\cmds\\ticker_info.txt'
+
+12/10/2023 01:31:59 PM unsupported operand type(s) for -: 'str' and 'relativedelta'
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 34, in forecast_cmd_handler
+    metrics_dict, results_df, last_price = forecast(params_dict)
+                                           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_query.py", line 34, in forecast
+    return make_forecast(forecast_type, forecast_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_query.py", line 40, in make_forecast
+    forecaster = StatsForecaster(**forecast_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\forecasting\StatsForecaster.py", line 15, in __init__
+    super().__init__(ticker, timeframe, target, horizon, model_name,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\forecasting\Forecaster.py", line 32, in __init__
+    self.ts = ParamHelper.ts_from_param_period(ticker, timeframe, period, curr_date, include_today=include_today,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\helpers\ParamHelpers\ParamHelper.py", line 16, in ts_from_param_period
+    return FinTimeSeries.from_last(ticker, period_type, period_num, timeframe, curr_date,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 102, in from_last
+    return cls.from_years(ticker, period_num, timeframe, curr_date, include_today, from_db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 85, in from_years
+    start = curr_date - relativedelta(years=num_years)
+            ~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'str' and 'relativedelta'
+12/10/2023 01:37:25 PM unsupported operand type(s) for -: 'str' and 'relativedelta'
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 34, in forecast_cmd_handler
+    metrics_dict, results_df, last_price = forecast(params_dict)
+                                           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_query.py", line 34, in forecast
+    return make_forecast(forecast_type, forecast_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_query.py", line 40, in make_forecast
+    forecaster = StatsForecaster(**forecast_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\forecasting\StatsForecaster.py", line 15, in __init__
+    super().__init__(ticker, timeframe, target, horizon, model_name,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\forecasting\Forecaster.py", line 32, in __init__
+    self.ts = ParamHelper.ts_from_param_period(ticker, timeframe, period, curr_date, include_today=include_today,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\helpers\ParamHelpers\ParamHelper.py", line 16, in ts_from_param_period
+    return FinTimeSeries.from_last(ticker, period_type, period_num, timeframe, curr_date,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 102, in from_last
+    return cls.from_years(ticker, period_num, timeframe, curr_date, include_today, from_db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 85, in from_years
+    start = curr_date - relativedelta(years=num_years)
+            ~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'str' and 'relativedelta'
+12/10/2023 01:42:44 PM unsupported operand type(s) for -: 'str' and 'relativedelta'
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 34, in forecast_cmd_handler
+    metrics_dict, results_df, last_price = forecast(params_dict)
+                                           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_query.py", line 34, in forecast
+    return make_forecast(forecast_type, forecast_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_query.py", line 40, in make_forecast
+    forecaster = StatsForecaster(**forecast_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\forecasting\StatsForecaster.py", line 15, in __init__
+    super().__init__(ticker, timeframe, target, horizon, model_name,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\forecasting\Forecaster.py", line 32, in __init__
+    self.ts = ParamHelper.ts_from_param_period(ticker, timeframe, period, curr_date, include_today=include_today,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\helpers\ParamHelpers\ParamHelper.py", line 16, in ts_from_param_period
+    return FinTimeSeries.from_last(ticker, period_type, period_num, timeframe, curr_date,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 102, in from_last
+    return cls.from_years(ticker, period_num, timeframe, curr_date, include_today, from_db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 85, in from_years
+    start = curr_date - relativedelta(years=num_years)
+            ~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'str' and 'relativedelta'
+12/10/2023 01:43:02 PM unsupported operand type(s) for -: 'str' and 'relativedelta'
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 34, in forecast_cmd_handler
+    metrics_dict, results_df, last_price = forecast(params_dict)
+                                           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_query.py", line 34, in forecast
+    return make_forecast(forecast_type, forecast_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_query.py", line 40, in make_forecast
+    forecaster = StatsForecaster(**forecast_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\forecasting\StatsForecaster.py", line 15, in __init__
+    super().__init__(ticker, timeframe, target, horizon, model_name,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\forecasting\Forecaster.py", line 32, in __init__
+    self.ts = ParamHelper.ts_from_param_period(ticker, timeframe, period, curr_date, include_today=include_today,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\helpers\ParamHelpers\ParamHelper.py", line 16, in ts_from_param_period
+    return FinTimeSeries.from_last(ticker, period_type, period_num, timeframe, curr_date,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 102, in from_last
+    return cls.from_years(ticker, period_num, timeframe, curr_date, include_today, from_db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\finance\FinTimeSeries.py", line 85, in from_years
+    start = curr_date - relativedelta(years=num_years)
+            ~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'str' and 'relativedelta'
+02/05/2024 03:39:12 PM Infinity polling exception: 'close'
+02/05/2024 03:39:12 PM Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3653, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas\_libs\index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'close'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 955, in infinity_polling
+    self.polling(non_stop=True, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1043, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1118, in __threaded_polling
+    raise e
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1074, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 147, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 90, in run
+    task(*args, **kwargs)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 6770, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 47, in forecast_cmd_handler
+    output_bot_message(user_message.chat.id, metrics_dict, results_df, last_price, params_dict)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 71, in output_bot_message
+    next_price = results_df['close'].iloc[0]
+                 ~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3655, in get_loc
+    raise KeyError(key) from err
+KeyError: 'close'
+
+02/05/2024 03:41:27 PM Infinity polling exception: 'close'
+02/05/2024 03:41:27 PM Exception traceback:
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3653, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas\_libs\index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'close'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 955, in infinity_polling
+    self.polling(non_stop=True, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1043, in polling
+    self.__threaded_polling(non_stop=non_stop, interval=interval, timeout=timeout, long_polling_timeout=long_polling_timeout,
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1118, in __threaded_polling
+    raise e
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 1074, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 147, in raise_exceptions
+    raise self.exception_info
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\util.py", line 90, in run
+    task(*args, **kwargs)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\telebot\__init__.py", line 6770, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 47, in forecast_cmd_handler
+    output_bot_message(user_message.chat.id, metrics_dict, results_df, last_price, params_dict)
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\chatbot\handlers\forecast\forecast_cmd.py", line 71, in output_bot_message
+    next_price = results_df['close'].iloc[0]
+                 ~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\admin\PycharmProjects\chatbot_v3_transfer\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3655, in get_loc
+    raise KeyError(key) from err
+KeyError: 'close'
+
